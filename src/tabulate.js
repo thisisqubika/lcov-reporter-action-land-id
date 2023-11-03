@@ -83,7 +83,7 @@ function toRow(file, indent, options) {
 		td(percentage(file.branches, options)),
 		td(percentage(file.functions, options)),
 		td(percentage(file.lines, options)),
-		td(uncovered(file, options)),
+		td(uncovered(file)),
 	)
 }
 
@@ -106,7 +106,7 @@ function percentage(item) {
 	return tag(`${rounded}%`)
 }
 
-function uncovered(file, options) {
+function uncovered(file) {
 	const branches = (file.branches ? file.branches.details : [])
 		.filter(branch => branch.taken === 0)
 		.map(branch => branch.line)
@@ -119,17 +119,12 @@ function uncovered(file, options) {
 
 	return all
 		.map(function (range) {
-			const fragment =
-				range.start === range.end
-					? `L${range.start}`
-					: `L${range.start}-L${range.end}`
-			const { href } = createHref(options, file)
 			const text =
 				range.start === range.end
 					? range.start
 					: `${range.start}&ndash;${range.end}`
 
-			return a({ href: `${href}#${fragment}` }, text)
+			return text
 		})
 		.join(", ")
 }

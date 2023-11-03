@@ -162,14 +162,7 @@ test("tabulate should generate a correct table", function() {
 				td("100%"),
 				td(b("66.67%")),
 				td(b("91.30%")),
-				td(
-					a(
-						{
-							href: `https://github.com/${options.repository}/blob/${options.commit}/frontend/src/foo.js#L37`,
-						},
-						37,
-					),
-				),
+				td("37"),
 			),
 			tr(td({ colspan: 6 }, b("src/bar"))),
 			tr(
@@ -186,21 +179,7 @@ test("tabulate should generate a correct table", function() {
 				td("N/A"),
 				td(b("66.67%")),
 				td(b("50%")),
-				td(
-					a(
-						{
-							href: `https://github.com/${options.repository}/blob/${options.commit}/frontend/src/bar/baz.js#L20-L21`,
-						},
-						"20&ndash;21",
-					),
-					", ",
-					a(
-						{
-							href: `https://github.com/${options.repository}/blob/${options.commit}/frontend/src/bar/baz.js#L27`,
-						},
-						"27",
-					),
-				),
+				td("20&ndash;21, 27"),
 			),
 		),
 	)
@@ -354,14 +333,7 @@ test("filtered tabulate should generate a correct table with only changed files"
 				td("100%"),
 				td(b("66.67%")),
 				td(b("91.30%")),
-				td(
-					a(
-						{
-							href: `https://github.com/${options.repository}/blob/${options.commit}/src/foo.js#L37`,
-						},
-						37,
-					),
-				),
+				td("37"),
 			),
 		),
 	)
@@ -489,7 +461,7 @@ test("filtered tabulate should fix backwards slashes in filenames", function() {
 		shouldFilterChangedFiles: true,
 		changedFiles: ["src/foo.js"],
 	}
-	
+
 	const html = table(
 		tbody(
 			tr(
@@ -515,14 +487,7 @@ test("filtered tabulate should fix backwards slashes in filenames", function() {
 				td("100%"),
 				td(b("66.67%")),
 				td(b("91.30%")),
-				td(
-					a(
-						{
-							href: `https://github.com/${options.repository}/blob/${options.commit}/src/foo.js#L37`,
-						},
-						37,
-					),
-				),
+				td("37"),
 			),
 		),
 	)
