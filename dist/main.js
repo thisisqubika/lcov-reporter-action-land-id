@@ -23002,14 +23002,18 @@ function diff(lcov, before, options) {
 	return fragment(
 		options.title ? h2(options.title) : "",
 		options.base
-			? `Coverage after merging ${b(options.head)} into ${b(
-					options.base,
-			  )} will be`
+			? `Coverage for this PR`
 			: `Coverage for this commit`,
 		table(
 			tbody(
 				tr(
+					th(options.head),
+					th(options.base),
+					th("Diff"),
+				),
+				tr(
 					th(pafter.toFixed(2), "%"),
+					th(pbefore.toFixed(2), "%"),
 					th(arrow, " ", plus, pdiff.toFixed(2), "%"),
 				),
 			),
