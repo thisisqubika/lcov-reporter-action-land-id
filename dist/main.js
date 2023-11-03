@@ -23124,7 +23124,7 @@ async function main$1() {
 
 	const options = {
 		repository: github_1.payload.repository.full_name,
-		prefix: normalisePath(`${process.env.GITHUB_WORKSPACE}/`),
+		prefix: normalisePath(workingDir),
 		workingDir,
 	};
 
